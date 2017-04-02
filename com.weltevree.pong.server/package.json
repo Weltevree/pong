@@ -1,0 +1,30 @@
+{
+  "name": "com.weltevree.pong.server",
+  "version": "1.0.0",
+  "description": "Pong server",
+  "main": "server.js",
+  "dependencies": {
+    "websocket": "^1.0.24"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Weltevree/pong.git"
+  },
+  "keywords": [
+    "pong",
+    "js",
+    "node"
+  ],
+  "author": "W.S. Jongman",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Weltevree/pong/issues"
+  },
+  "homepage": "https://github.com/Weltevree/pong#readme"
+}
+
