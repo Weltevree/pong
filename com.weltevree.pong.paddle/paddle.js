@@ -55,9 +55,17 @@
             if (this.positie.y <= 0 || this.positie.y >= this.height - 19) {
                 this.baan.y = this.baan.y * -1;
             }
-            if (this.positie.y == 30) {
-                console.log('waddup');
+
+            if (paddle.hit(this) == true) {
+                console.log("hit");
+                this.baan.x = this.baan.x * -1;
             }
+
+            if (paddle2.hit(this) == true) {
+                console.log("hit");
+                this.baan.x = this.baan.x * -1;
+            }
+
         }
         this.show = function () {
             rect(this.positie.x, this.positie.y, 20, 20);
@@ -78,17 +86,23 @@
     }
 
 
-    function Paddle(x, y) {
-        this.x = x;
-        this.y = y;
+    function Paddle(pX, pY) {
+        this.x = pX;
+        this.y = pY;
 
         this.show = function () {
             rect(this.x, this.y, 20, 125);
             //        console.log(this.y);
         }
 
-        this.calculate = function (mY) {
-            this.y = mY;
+        this.calculate = function (pY) {
+            this.y = pY;
         }
 
+        this.hit = function (pBall) {
+            if (pBall.positie.x <= this.x && pBall.positie.y >= this.y && pBall.positie.y <= this.y + 125) {
+                return true;
+            }
+            return false;
+        }
     }
