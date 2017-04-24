@@ -1,6 +1,8 @@
 var WebSocketServer = require('websocket').server;
 var User = require('../com.weltevree.pong.model/User.js');
 var Logger = require('../com.weltevree.pong.model/Logger.js');
+var Ball = require('../com.weltevree.pong.model/Ball.js');
+var Vector = require('../com.weltevree.pong.model/Vector.js');
 var http = require('http');
 var users = new Map();
 
