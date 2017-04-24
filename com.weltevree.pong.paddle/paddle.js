@@ -70,19 +70,6 @@
         this.show = function () {
             rect(this.positie.x, this.positie.y, 20, 20);
         }
-
-        this.collision = function () {
-            if (positie.x <= xCoord + 20 && positie.y > yCoord - 20 && positie.y < yCoord + 125) {
-                if (positie.y + 20 < middelPunt && baan.y > 0) {
-                    baan.y = baan.y * -1;
-                } else if (positie.y + 20 > middelPunt && baan.y < 0) {
-                    baan.y = baan.y * -1;
-                }
-
-                baan.x = baan.x * -1;
-                positie.x = xCoord + 20;
-            }
-        }
     }
 
 
@@ -101,6 +88,16 @@
 
         this.hit = function (pBall) {
             if (pBall.positie.x <= this.x && pBall.positie.y >= this.y && pBall.positie.y <= this.y + 125) {
+                return true;
+            }
+            return false;
+        }
+
+        this.approaching = function (pBall) {
+            if (this.x < pBall.positie.x && pBall.baan.x < 0) {
+                return true;
+            }
+            if (this.x > pBall.positie.x && pBall.baan.x > 0) {
                 return true;
             }
             return false;
