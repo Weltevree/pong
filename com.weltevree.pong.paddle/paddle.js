@@ -10,8 +10,6 @@
         stroke(0);
     }
 
-
-
     function draw() {
         background(51);
 
@@ -21,7 +19,6 @@
         paddle.calculate(mouseY);
         paddle2.show();
         paddle.show();
-
     }
 
     function Vector(x, y) {
@@ -44,34 +41,36 @@
 
         this.calculate = function () {
             this.bounds();
+            this.paddleHit();
             this.positie.add(this.baan);
         }
 
-        this.bounds = function () {
-            if (this.positie.x <= 0 || this.positie.x >= this.width - 19) {
-                this.baan.x = this.baan.x * -1;
-            }
-
-            if (this.positie.y <= 0 || this.positie.y >= this.height - 19) {
-                this.baan.y = this.baan.y * -1;
-            }
-
+        this.paddleHit = function () {
             if (paddle.hit(this) == true) {
-                console.log("hit");
                 this.baan.x = this.baan.x * -1;
             }
 
             if (paddle2.hit(this) == true) {
-                console.log("hit");
                 this.baan.x = this.baan.x * -1;
             }
-
         }
+
+        this.bounds = function () {
+            if (this.positie.x <= 0 || this.positie.x >= this.width - 19) {
+                background(255);
+                // this.baan.x = this.baan.x * -1;
+            }
+
+            if (this.positie.y <= 0 || this.positie.y >= this.height - 19) {
+    //            background(255);
+                this.baan.y = this.baan.y * -1;
+            }
+        }
+
         this.show = function () {
             rect(this.positie.x, this.positie.y, 20, 20);
         }
     }
-
 
     function Paddle(pX, pY) {
         this.x = pX;
@@ -87,18 +86,15 @@
         }
 
         this.hit = function (pBall) {
-            if (pBall.positie.x <= this.x && pBall.positie.y >= this.y && pBall.positie.y <= this.y + 125) {
-                return true;
-            }
-            return false;
-        }
-
-        this.approaching = function (pBall) {
             if (this.x < pBall.positie.x && pBall.baan.x < 0) {
-                return true;
+                if (pBall.positie.x + pBall.baan.x <= this.x && pBall.positie.y >= this.y && pBall.positie.y <= this.y + 125) {
+                    return true;
+                }
             }
             if (this.x > pBall.positie.x && pBall.baan.x > 0) {
-                return true;
+                if (pBall.positie.x + pBall.baan.x >= this.x && pBall.positie.y >= this.y && pBall.positie.y <= this.y + 125) {
+                    return true;
+                }
             }
             return false;
         }
